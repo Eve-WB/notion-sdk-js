@@ -13,17 +13,17 @@ import { DistributiveExtend, DistributiveOmit, RequiredBy } from "./type-utils"
  */
 
 export interface PaginationParameters {
-  start_cursor?: string
-  page_size?: number
+	start_cursor?: string
+	page_size?: number
 }
 
 export interface PaginatedList<
-  O extends APISingularObject = APISingularObject
+	O extends APISingularObject = APISingularObject
 > {
-  object: "list"
-  results: O[]
-  has_more: boolean
-  next_cursor: string | null
+	object: "list"
+	results: O[]
+	has_more: boolean
+	next_cursor: string | null
 }
 
 /*
@@ -40,92 +40,92 @@ export type APISingularObject = Database | Page | User | Block
 // TODO: need an input version of this type. maybe reuse DistributiveOmit. but what about RichText id's?
 
 export type Block =
-  | ParagraphBlock
-  | HeadingOneBlock
-  | HeadingTwoBlock
-  | HeadingThreeBlock
-  | BulletedListItemBlock
-  | NumberedListItemBlock
-  | ToDoBlock
-  | ToggleBlock
-  | ChildPageBlock
-  | UnsupportedBlock
+	| ParagraphBlock
+	| HeadingOneBlock
+	| HeadingTwoBlock
+	| HeadingThreeBlock
+	| BulletedListItemBlock
+	| NumberedListItemBlock
+	| ToDoBlock
+	| ToggleBlock
+	| ChildPageBlock
+	| UnsupportedBlock
 
 export interface BlockBase {
-  object: "block"
-  id: string
-  type: string
-  created_time: string
-  last_edited_time: string
-  has_children: boolean
+	object: "block"
+	id: string
+	type: string
+	created_time: string
+	last_edited_time: string
+	has_children: boolean
 }
 
 export interface ParagraphBlock extends BlockBase {
-  type: "paragraph"
-  paragraph: {
-    text: RichText[]
-    children?: Block[]
-  }
+	type: "paragraph"
+	paragraph: {
+		text: RichText[]
+		children?: Block[]
+	}
 }
 
 export interface HeadingOneBlock extends BlockBase {
-  type: "heading_1"
-  heading_1: { text: RichText[] }
-  has_children: false
+	type: "heading_1"
+	heading_1: { text: RichText[] }
+	has_children: false
 }
 
 export interface HeadingTwoBlock extends BlockBase {
-  type: "heading_2"
-  heading_2: { text: RichText[] }
-  has_children: false
+	type: "heading_2"
+	heading_2: { text: RichText[] }
+	has_children: false
 }
 
 export interface HeadingThreeBlock extends BlockBase {
-  type: "heading_3"
-  heading_3: { text: RichText[] }
-  has_children: false
+	type: "heading_3"
+	heading_3: { text: RichText[] }
+	has_children: false
 }
 
 export interface BulletedListItemBlock extends BlockBase {
-  type: "bulleted_list_item"
-  bulleted_list_item: {
-    text: RichText[]
-    children?: Block[]
-  }
+	type: "bulleted_list_item"
+	bulleted_list_item: {
+		text: RichText[]
+		children?: Block[]
+	}
 }
 
 export interface NumberedListItemBlock extends BlockBase {
-  type: "numbered_list_item"
-  numbered_list_item: {
-    text: RichText[]
-    children?: Block[]
-  }
+	type: "numbered_list_item"
+	numbered_list_item: {
+		text: RichText[]
+		children?: Block[]
+	}
 }
 
 export interface ToDoBlock extends BlockBase {
-  type: "to_do"
-  to_do: {
-    text: RichText[]
-    checked: boolean
-    children?: Block[]
-  }
+	type: "to_do"
+	to_do: {
+		text: RichText[]
+		checked: boolean
+		children?: Block[]
+	}
 }
 
 export interface ToggleBlock extends BlockBase {
-  type: "toggle"
-  toggle: {
-    text: RichText[]
-    children?: Block[]
-  }
+	type: "toggle"
+	toggle: {
+		text: RichText[]
+		children?: Block[]
+	}
 }
 
 export interface ChildPageBlock extends BlockBase {
-  type: "child_page"
-  child_page: { title: string }
+	type: "child_page"
+	child_page: { title: string }
 }
 
 export interface UnsupportedBlock extends BlockBase {
-  type: "unsupported"
+	type: "unsupported"
 }
 
 /*
@@ -133,13 +133,13 @@ export interface UnsupportedBlock extends BlockBase {
  */
 
 export interface Database {
-  object: "database"
-  id: string
-  parent: ParentPage | ParentWorkspace
-  created_time: string
-  last_edited_time: string
-  title: RichText[]
-  properties: { [propertyName: string]: Property }
+	object: "database"
+	id: string
+	parent: ParentPage | ParentWorkspace
+	created_time: string
+	last_edited_time: string
+	title: RichText[]
+	properties: { [propertyName: string]: Property }
 }
 
 /*
@@ -147,191 +147,191 @@ export interface Database {
  */
 
 export type Property =
-  | TitleProperty
-  | RichTextProperty
-  | NumberProperty
-  | SelectProperty
-  | MultiSelectProperty
-  | DateProperty
-  | PeopleProperty
-  | FilesProperty
-  | CheckboxProperty
-  | URLProperty
-  | EmailProperty
-  | PhoneNumberProperty
-  | FormulaProperty
-  | RelationProperty
-  | RollupProperty
-  | CreatedTimeProperty
-  | CreatedByProperty
-  | LastEditedTimeProperty
-  | LastEditedByProperty
+	| TitleProperty
+	| RichTextProperty
+	| NumberProperty
+	| SelectProperty
+	| MultiSelectProperty
+	| DateProperty
+	| PeopleProperty
+	| FilesProperty
+	| CheckboxProperty
+	| URLProperty
+	| EmailProperty
+	| PhoneNumberProperty
+	| FormulaProperty
+	| RelationProperty
+	| RollupProperty
+	| CreatedTimeProperty
+	| CreatedByProperty
+	| LastEditedTimeProperty
+	| LastEditedByProperty
 
 export interface PropertyBase {
-  id: string
-  type: string
-  name: string
+	id: string
+	type: string
+	name: string
 }
 
 export interface TitleProperty extends PropertyBase {
-  type: "title"
-  title: Record<string, never>
+	type: "title"
+	title: Record<string, never>
 }
 
 export interface RichTextProperty extends PropertyBase {
-  type: "rich_text"
-  rich_text: Record<string, never>
+	type: "rich_text"
+	rich_text: Record<string, never>
 }
 
 export interface NumberProperty extends PropertyBase {
-  type: "number"
-  number: {
-    format:
-      | "number"
-      | "number_with_commas"
-      | "percent"
-      | "dollar"
-      | "canadian_dollar"
-      | "euro"
-      | "pound"
-      | "yen"
-      | "ruble"
-      | "rupee"
-      | "won"
-      | "yuan"
-      | "real"
-      | "lira"
-      | "rupiah"
-      | "franc"
-      | "hong_kong_dollar"
-      | "new_zealand_dollar"
-      | "krona"
-      | "norwegian_krone"
-      | "mexican_peso"
-      | "rand"
-      | "new_taiwan_dollar"
-      | "danish_krone"
-      | "zloty"
-      | "baht"
-      | "forint"
-      | "koruna"
-      | "shekel"
-      | "chilean_peso"
-      | "philippine_peso"
-      | "dirham"
-      | "colombian_peso"
-      | "riyal"
-      | "ringgit"
-      | "leu"
-  }
+	type: "number"
+	number: {
+		format:
+			| "number"
+			| "number_with_commas"
+			| "percent"
+			| "dollar"
+			| "canadian_dollar"
+			| "euro"
+			| "pound"
+			| "yen"
+			| "ruble"
+			| "rupee"
+			| "won"
+			| "yuan"
+			| "real"
+			| "lira"
+			| "rupiah"
+			| "franc"
+			| "hong_kong_dollar"
+			| "new_zealand_dollar"
+			| "krona"
+			| "norwegian_krone"
+			| "mexican_peso"
+			| "rand"
+			| "new_taiwan_dollar"
+			| "danish_krone"
+			| "zloty"
+			| "baht"
+			| "forint"
+			| "koruna"
+			| "shekel"
+			| "chilean_peso"
+			| "philippine_peso"
+			| "dirham"
+			| "colombian_peso"
+			| "riyal"
+			| "ringgit"
+			| "leu"
+	}
 }
 
 export interface SelectProperty extends PropertyBase {
-  type: "select"
-  select: { options: SelectOption[] }
+	type: "select"
+	select: { options: SelectOption[] }
 }
 
 export interface MultiSelectProperty extends PropertyBase {
-  type: "multi_select"
-  multi_select: {
-    options: MultiSelectOption[]
-  }
+	type: "multi_select"
+	multi_select: {
+		options: MultiSelectOption[]
+	}
 }
 
 export interface DateProperty extends PropertyBase {
-  type: "date"
-  date: Record<string, never>
+	type: "date"
+	date: Record<string, never>
 }
 
 export interface PeopleProperty extends PropertyBase {
-  type: "people"
-  people: Record<string, never>
+	type: "people"
+	people: Record<string, never>
 }
 
 export interface FilesProperty extends PropertyBase {
-  type: "files"
-  file: Record<string, never>
+	type: "files"
+	file: Record<string, never>
 }
 
 export interface CheckboxProperty extends PropertyBase {
-  type: "checkbox"
-  checkbox: Record<string, never>
+	type: "checkbox"
+	checkbox: Record<string, never>
 }
 
 export interface URLProperty extends PropertyBase {
-  type: "url"
-  url: Record<string, never>
+	type: "url"
+	url: Record<string, never>
 }
 
 export interface EmailProperty extends PropertyBase {
-  type: "email"
-  email: Record<string, never>
+	type: "email"
+	email: Record<string, never>
 }
 
 export interface PhoneNumberProperty extends PropertyBase {
-  type: "phone_number"
-  phone_number: Record<string, never>
+	type: "phone_number"
+	phone_number: Record<string, never>
 }
 
 export interface FormulaProperty extends PropertyBase {
-  type: "formula"
-  formula: {
-    expression: string
-  }
+	type: "formula"
+	formula: {
+		expression: string
+	}
 }
 
 export interface RelationProperty extends PropertyBase {
-  type: "relation"
-  relation: {
-    database_id: string
-    synced_property_name?: string
-    synced_property_id?: string
-  }
+	type: "relation"
+	relation: {
+		database_id: string
+		synced_property_name?: string
+		synced_property_id?: string
+	}
 }
 
 export interface RollupProperty extends PropertyBase {
-  type: "rollup"
-  rollup: {
-    relation_property_name: string
-    relation_property_id: string
-    rollup_property_name: string
-    rollup_property_id: string
-    function:
-      | "count_all"
-      | "count_values"
-      | "count_unique_values"
-      | "count_empty"
-      | "count_not_empty"
-      | "percent_empty"
-      | "percent_not_empty"
-      | "sum"
-      | "average"
-      | "median"
-      | "min"
-      | "max"
-      | "range"
-      | "show_original"
-  }
+	type: "rollup"
+	rollup: {
+		relation_property_name: string
+		relation_property_id: string
+		rollup_property_name: string
+		rollup_property_id: string
+		function:
+			| "count_all"
+			| "count_values"
+			| "count_unique_values"
+			| "count_empty"
+			| "count_not_empty"
+			| "percent_empty"
+			| "percent_not_empty"
+			| "sum"
+			| "average"
+			| "median"
+			| "min"
+			| "max"
+			| "range"
+			| "show_original"
+	}
 }
 
 export interface CreatedTimeProperty extends PropertyBase {
-  type: "created_time"
-  created_time: Record<string, never>
+	type: "created_time"
+	created_time: Record<string, never>
 }
 
 export interface CreatedByProperty extends PropertyBase {
-  type: "created_by"
-  created_by: Record<string, never>
+	type: "created_by"
+	created_by: Record<string, never>
 }
 
 export interface LastEditedTimeProperty extends PropertyBase {
-  type: "last_edited_time"
-  last_edited_time: Record<string, never>
+	type: "last_edited_time"
+	last_edited_time: Record<string, never>
 }
 
 export interface LastEditedByProperty extends PropertyBase {
-  type: "last_edited_by"
-  last_edited_by: Record<string, never>
+	type: "last_edited_by"
+	last_edited_by: Record<string, never>
 }
 
 /*
@@ -341,22 +341,22 @@ export interface LastEditedByProperty extends PropertyBase {
 export type User = PersonUser | BotUser
 
 export interface UserBase {
-  object: "user"
-  id: string
-  type?: string
-  name?: string
-  avatar_url?: string
+	object: "user"
+	id: string
+	type?: string
+	name?: string
+	avatar_url?: string
 }
 
 export interface PersonUser extends UserBase {
-  type?: "person"
-  person?: {
-    email: string
-  }
+	type?: "person"
+	person?: {
+		email: string
+	}
 }
 
 export interface BotUser extends UserBase {
-  type?: "bot"
+	type?: "bot"
 }
 
 /*
@@ -364,17 +364,17 @@ export interface BotUser extends UserBase {
  */
 
 export interface SelectOptionBase {
-  color?: Color
+	color?: Color
 }
 
 export interface SelectOptionWithName extends SelectOptionBase {
-  name: string
-  id?: never
+	name: string
+	id?: never
 }
 
 export interface SelectOptionWithId extends SelectOptionBase {
-  name?: never
-  id: string
+	name?: never
+	id: string
 }
 
 export type SelectOption = SelectOptionWithName | SelectOptionWithId
@@ -382,36 +382,36 @@ export type SelectOption = SelectOptionWithName | SelectOptionWithId
 export type MultiSelectOption = SelectOption
 
 export interface SearchSort {
-  direction: "ascending" | "descending"
-  timestamp: "last_edited_time"
+	direction: "ascending" | "descending"
+	timestamp: "last_edited_time"
 }
 
 export interface SearchFilter {
-  value: "page" | "database"
-  property: "object"
+	value: "page" | "database"
+	property: "object"
 }
 
 export type Color =
-  | "default"
-  | "gray"
-  | "brown"
-  | "orange"
-  | "yellow"
-  | "green"
-  | "blue"
-  | "purple"
-  | "pink"
-  | "red"
+	| "default"
+	| "gray"
+	| "brown"
+	| "orange"
+	| "yellow"
+	| "green"
+	| "blue"
+	| "purple"
+	| "pink"
+	| "red"
 export type BackgroundColor =
-  | "gray_background"
-  | "brown_background"
-  | "orange_background"
-  | "yellow_background"
-  | "green_background"
-  | "blue_background"
-  | "purple_background"
-  | "pink_background"
-  | "red_background"
+	| "gray_background"
+	| "brown_background"
+	| "orange_background"
+	| "yellow_background"
+	| "green_background"
+	| "blue_background"
+	| "purple_background"
+	| "pink_background"
+	| "red_background"
 
 /*
  * Filter (input)
@@ -420,128 +420,128 @@ export type BackgroundColor =
 export type Filter = SinglePropertyFilter | CompoundFilter
 
 export type SinglePropertyFilter =
-  | TextFilter
-  | NumberFilter
-  | CheckboxFilter
-  | SelectFilter
-  | MultiSelectFilter
-  | DateFilter
-  | PeopleFilter
-  | FilesFilter
-  | RelationFilter
-  | FormulaFilter
+	| TextFilter
+	| NumberFilter
+	| CheckboxFilter
+	| SelectFilter
+	| MultiSelectFilter
+	| DateFilter
+	| PeopleFilter
+	| FilesFilter
+	| RelationFilter
+	| FormulaFilter
 
 export interface CompoundFilter {
-  or?: Filter[]
-  and?: Filter[]
+	or?: Filter[]
+	and?: Filter[]
 }
 
 export interface SinglePropertyFilterBase {
-  property: string
+	property: string
 }
 
 /** A text filter condition applies to database properties of types "title", "rich_text", "url", "email", and "phone". */
 export interface TextFilter extends SinglePropertyFilterBase {
-  text: {
-    equals?: string
-    does_not_equal?: string
-    contains?: string
-    does_not_contain?: string
-    starts_with?: string
-    ends_with?: string
-    is_empty?: true
-    is_not_empty?: true
-  }
+	text: {
+		equals?: string
+		does_not_equal?: string
+		contains?: string
+		does_not_contain?: string
+		starts_with?: string
+		ends_with?: string
+		is_empty?: true
+		is_not_empty?: true
+	}
 }
 
 export interface NumberFilter extends SinglePropertyFilterBase {
-  number: {
-    equals?: number
-    does_not_equal?: number
-    greater_than?: number
-    less_than?: number
-    greater_than_or_equal_to?: number
-    less_than_or_equal_to?: number
-    is_empty?: true
-    is_not_empty?: true
-  }
+	number: {
+		equals?: number
+		does_not_equal?: number
+		greater_than?: number
+		less_than?: number
+		greater_than_or_equal_to?: number
+		less_than_or_equal_to?: number
+		is_empty?: true
+		is_not_empty?: true
+	}
 }
 
 export interface CheckboxFilter extends SinglePropertyFilterBase {
-  checkbox: {
-    equals?: boolean
-    does_not_equal?: boolean
-  }
+	checkbox: {
+		equals?: boolean
+		does_not_equal?: boolean
+	}
 }
 
 export interface SelectFilter extends SinglePropertyFilterBase {
-  select: {
-    equals?: string
-    does_not_equal?: string
-    is_empty?: true
-    is_not_empty?: true
-  }
+	select: {
+		equals?: string
+		does_not_equal?: string
+		is_empty?: true
+		is_not_empty?: true
+	}
 }
 
 export interface MultiSelectFilter extends SinglePropertyFilterBase {
-  multi_select: {
-    contains?: string
-    does_not_contain?: string
-    is_empty?: true
-    is_not_empty?: true
-  }
+	multi_select: {
+		contains?: string
+		does_not_contain?: string
+		is_empty?: true
+		is_not_empty?: true
+	}
 }
 
 export interface DateFilter extends SinglePropertyFilterBase {
-  date: {
-    equals?: string
-    before?: string
-    after?: string
-    on_or_before?: string
-    is_empty?: true
-    is_not_empty?: true
-    on_or_after?: string
-    past_week?: Record<string, never>
-    past_month?: Record<string, never>
-    past_year?: Record<string, never>
-    next_week?: Record<string, never>
-    next_month?: Record<string, never>
-    next_year?: Record<string, never>
-  }
+	date: {
+		equals?: string
+		before?: string
+		after?: string
+		on_or_before?: string
+		is_empty?: true
+		is_not_empty?: true
+		on_or_after?: string
+		past_week?: Record<string, never>
+		past_month?: Record<string, never>
+		past_year?: Record<string, never>
+		next_week?: Record<string, never>
+		next_month?: Record<string, never>
+		next_year?: Record<string, never>
+	}
 }
 
 export interface PeopleFilter extends SinglePropertyFilterBase {
-  people: {
-    contains?: string
-    does_not_contain?: string
-    is_empty?: true
-    is_not_empty?: true
-  }
+	people: {
+		contains?: string
+		does_not_contain?: string
+		is_empty?: true
+		is_not_empty?: true
+	}
 }
 
 export interface FilesFilter extends SinglePropertyFilterBase {
-  files: {
-    is_empty?: true
-    is_not_empty?: true
-  }
+	files: {
+		is_empty?: true
+		is_not_empty?: true
+	}
 }
 
 export interface RelationFilter extends SinglePropertyFilterBase {
-  relation: {
-    contains?: string
-    does_not_contain?: string
-    is_empty?: true
-    is_not_empty?: true
-  }
+	relation: {
+		contains?: string
+		does_not_contain?: string
+		is_empty?: true
+		is_not_empty?: true
+	}
 }
 
 export interface FormulaFilter extends SinglePropertyFilterBase {
-  formula: {
-    text?: Omit<TextFilter, "property">
-    checkbox?: Omit<CheckboxFilter, "property">
-    number?: Omit<NumberFilter, "property">
-    date?: Omit<DateFilter, "property">
-  }
+	formula: {
+		text?: Omit<TextFilter, "property">
+		checkbox?: Omit<CheckboxFilter, "property">
+		number?: Omit<NumberFilter, "property">
+		date?: Omit<DateFilter, "property">
+	}
 }
 
 /*
@@ -549,9 +549,9 @@ export interface FormulaFilter extends SinglePropertyFilterBase {
  */
 
 export interface Sort {
-  property?: string
-  timestamp?: "created_time" | "last_edited_time"
-  direction: "ascending" | "descending"
+	property?: string
+	timestamp?: "created_time" | "last_edited_time"
+	direction: "ascending" | "descending"
 }
 
 /*
@@ -559,14 +559,16 @@ export interface Sort {
  */
 
 export interface Page {
-  object: "page"
-  id: string
-  parent: ParentDatabase | ParentPage | ParentWorkspace
-  created_time: string
-  last_edited_time: string
-  archived: boolean
-  properties: PropertyValueMap
-  url: string
+	object: "page"
+	id: string
+	parent: ParentDatabase | ParentPage | ParentWorkspace
+	created_time: string
+	last_edited_time: string
+	archived: boolean
+	icon: FileInput | ExternalFileInput | EmojiInput | null
+	cover: FileInput | ExternalFileInput | null
+	properties: PropertyValueMap
+	url: string
 }
 
 /**
@@ -574,73 +576,73 @@ export interface Page {
  */
 
 export type UpdateBlock =
-  | ParagraphUpdateBlock
-  | HeadingOneUpdateBlock
-  | HeadingTwoUpdateBlock
-  | HeadingThreeUpdateBlock
-  | BulletedListItemUpdateBlock
-  | NumberedListItemUpdateBlock
-  | ToggleUpdateBlock
-  | ToDoUpdateBlock
+	| ParagraphUpdateBlock
+	| HeadingOneUpdateBlock
+	| HeadingTwoUpdateBlock
+	| HeadingThreeUpdateBlock
+	| BulletedListItemUpdateBlock
+	| NumberedListItemUpdateBlock
+	| ToggleUpdateBlock
+	| ToDoUpdateBlock
 
 interface TextContentUpdate {
-  text: RichTextInput[]
+	text: RichTextInput[]
 }
 
 interface ParagraphUpdateBlock {
-  paragraph: TextContentUpdate
+	paragraph: TextContentUpdate
 }
 
 interface HeadingOneUpdateBlock {
-  heading_1: TextContentUpdate
+	heading_1: TextContentUpdate
 }
 
 interface HeadingTwoUpdateBlock {
-  heading_2: TextContentUpdate
+	heading_2: TextContentUpdate
 }
 interface HeadingThreeUpdateBlock {
-  heading_3: TextContentUpdate
+	heading_3: TextContentUpdate
 }
 
 interface BulletedListItemUpdateBlock {
-  bulleted_list_item: TextContentUpdate
+	bulleted_list_item: TextContentUpdate
 }
 interface NumberedListItemUpdateBlock {
-  numbered_list_item: TextContentUpdate
+	numbered_list_item: TextContentUpdate
 }
 interface ToggleUpdateBlock {
-  toggle: TextContentUpdate
+	toggle: TextContentUpdate
 }
 
 interface ToDoUpdateBlock {
-  to_do: {
-    text?: RichTextInput[]
-    checked?: boolean
-  }
+	to_do: {
+		text?: RichTextInput[]
+		checked?: boolean
+	}
 }
 
 /*
  * Parent
  */
 export type ParentInput =
-  | Omit<ParentDatabase, "type">
-  | Omit<ParentPage, "type">
+	| Omit<ParentDatabase, "type">
+	| Omit<ParentPage, "type">
 // TODO: use DistributiveOmit?
 
 export type ParentPageInput = Omit<ParentPage, "type">
 
 interface ParentDatabase {
-  type: "database_id"
-  database_id: string
+	type: "database_id"
+	database_id: string
 }
 
 interface ParentPage {
-  type: "page_id"
-  page_id: string
+	type: "page_id"
+	page_id: string
 }
 
 interface ParentWorkspace {
-  type: "workspace"
+	type: "workspace"
 }
 
 /*
@@ -648,194 +650,194 @@ interface ParentWorkspace {
  */
 
 export type PropertyValue =
-  | TitlePropertyValue
-  | RichTextPropertyValue
-  | NumberPropertyValue
-  | SelectPropertyValue
-  | MultiSelectPropertyValue
-  | DatePropertyValue
-  | FormulaPropertyValue
-  | RollupPropertyValue
-  | PeoplePropertyValue
-  | FilesPropertyValue
-  | CheckboxPropertyValue
-  | URLPropertyValue
-  | EmailPropertyValue
-  | PhoneNumberPropertyValue
-  | CreatedTimePropertyValue
-  | CreatedByPropertyValue
-  | LastEditedTimePropertyValue
-  | LastEditedByPropertyValue
+	| TitlePropertyValue
+	| RichTextPropertyValue
+	| NumberPropertyValue
+	| SelectPropertyValue
+	| MultiSelectPropertyValue
+	| DatePropertyValue
+	| FormulaPropertyValue
+	| RollupPropertyValue
+	| PeoplePropertyValue
+	| FilesPropertyValue
+	| CheckboxPropertyValue
+	| URLPropertyValue
+	| EmailPropertyValue
+	| PhoneNumberPropertyValue
+	| CreatedTimePropertyValue
+	| CreatedByPropertyValue
+	| LastEditedTimePropertyValue
+	| LastEditedByPropertyValue
 
 export type PropertyValueWithoutId = DistributiveOmit<PropertyValue, "id">
 
 export type InputPropertyValue = DistributiveExtend<
-  DistributiveOmit<InputPropertyValueWithRequiredId, "id">,
-  { id?: string }
+	DistributiveOmit<InputPropertyValueWithRequiredId, "id">,
+	{ id?: string }
 >
 
 // NOTE(blackmad): there are probably still sub-types in here that need to be made
 // more permissive when used for input
 export type InputPropertyValueWithRequiredId =
-  | TitleInputPropertyValue
-  | RichTextInputPropertyValue
-  | NumberPropertyValue
-  | SelectPropertyValue
-  | MultiSelectPropertyValue
-  | DatePropertyValue
-  | FormulaPropertyValue
-  | RollupPropertyValue
-  | PeoplePropertyValue
-  | FilesPropertyValue
-  | CheckboxPropertyValue
-  | URLPropertyValue
-  | EmailPropertyValue
-  | PhoneNumberPropertyValue
-  | CreatedTimePropertyValue
-  | CreatedByPropertyValue
-  | LastEditedTimePropertyValue
-  | LastEditedByPropertyValue
+	| TitleInputPropertyValue
+	| RichTextInputPropertyValue
+	| NumberPropertyValue
+	| SelectPropertyValue
+	| MultiSelectPropertyValue
+	| DatePropertyValue
+	| FormulaPropertyValue
+	| RollupPropertyValue
+	| PeoplePropertyValue
+	| FilesPropertyValue
+	| CheckboxPropertyValue
+	| URLPropertyValue
+	| EmailPropertyValue
+	| PhoneNumberPropertyValue
+	| CreatedTimePropertyValue
+	| CreatedByPropertyValue
+	| LastEditedTimePropertyValue
+	| LastEditedByPropertyValue
 
 export interface PropertyValueBase {
-  id: string
-  type: string
+	id: string
+	type: string
 }
 
 export interface TitlePropertyValue extends PropertyValueBase {
-  type: "title"
-  title: RichText[]
+	type: "title"
+	title: RichText[]
 }
 
 export interface RichTextPropertyValue extends PropertyValueBase {
-  type: "rich_text"
-  rich_text: RichText[]
+	type: "rich_text"
+	rich_text: RichText[]
 }
 
 export interface TitleInputPropertyValue extends PropertyValueBase {
-  type: "title"
-  title: RichTextInput[]
+	type: "title"
+	title: RichTextInput[]
 }
 
 export interface RichTextInputPropertyValue extends PropertyValueBase {
-  type: "rich_text"
-  rich_text: RichTextInput[]
+	type: "rich_text"
+	rich_text: RichTextInput[]
 }
 
 export interface NumberPropertyValue extends PropertyValueBase {
-  type: "number"
-  number: number
+	type: "number"
+	number: number
 }
 
 export interface SelectPropertyValue extends PropertyValueBase {
-  type: "select"
-  select: SelectOption
+	type: "select"
+	select: SelectOption
 }
 
 export interface MultiSelectPropertyValue extends PropertyValueBase {
-  type: "multi_select"
-  multi_select: MultiSelectOption[]
+	type: "multi_select"
+	multi_select: MultiSelectOption[]
 }
 
 export interface DatePropertyValue extends PropertyValueBase {
-  type: "date"
-  date: {
-    start: string
-    end?: string
-  }
+	type: "date"
+	date: {
+		start: string
+		end?: string
+	}
 }
 
 export interface FormulaPropertyValue extends PropertyValueBase {
-  type: "formula"
-  formula:
-    | StringFormulaValue
-    | NumberFormulaValue
-    | BooleanFormulaValue
-    | DateFormulaValue
+	type: "formula"
+	formula:
+		| StringFormulaValue
+		| NumberFormulaValue
+		| BooleanFormulaValue
+		| DateFormulaValue
 }
 
 export interface StringFormulaValue {
-  type: "string"
-  string?: string
+	type: "string"
+	string?: string
 }
 export interface NumberFormulaValue {
-  type: "number"
-  number?: number
+	type: "number"
+	number?: number
 }
 export interface BooleanFormulaValue {
-  type: "boolean"
-  boolean: boolean
+	type: "boolean"
+	boolean: boolean
 }
 export interface DateFormulaValue {
-  type: "date"
-  date: DatePropertyValue
+	type: "date"
+	date: DatePropertyValue
 }
 
 export interface RollupPropertyValue extends PropertyValueBase {
-  type: "rollup"
-  rollup: NumberRollupValue | DateRollupValue | ArrayRollupValue
+	type: "rollup"
+	rollup: NumberRollupValue | DateRollupValue | ArrayRollupValue
 }
 
 export interface NumberRollupValue {
-  type: "number"
-  number: number
+	type: "number"
+	number: number
 }
 export interface DateRollupValue {
-  type: "date"
-  date: DatePropertyValue
+	type: "date"
+	date: DatePropertyValue
 }
 export interface ArrayRollupValue {
-  type: "array"
-  array: PropertyValueWithoutId[]
+	type: "array"
+	array: PropertyValueWithoutId[]
 }
 
 export interface PeoplePropertyValue extends PropertyValueBase {
-  type: "people"
-  people: User[]
+	type: "people"
+	people: User[]
 }
 
 export interface FilesPropertyValue extends PropertyValueBase {
-  type: "files"
-  files: { name: string }[]
+	type: "files"
+	files: { name: string }[]
 }
 
 export interface CheckboxPropertyValue extends PropertyValueBase {
-  type: "checkbox"
-  checkbox: boolean
+	type: "checkbox"
+	checkbox: boolean
 }
 
 export interface URLPropertyValue extends PropertyValueBase {
-  type: "url"
-  url: string
+	type: "url"
+	url: string
 }
 
 export interface EmailPropertyValue extends PropertyValueBase {
-  type: "email"
-  email: string
+	type: "email"
+	email: string
 }
 
 export interface PhoneNumberPropertyValue extends PropertyValueBase {
-  type: "phone_number"
-  phone_number: string
+	type: "phone_number"
+	phone_number: string
 }
 
 export interface CreatedTimePropertyValue extends PropertyValueBase {
-  type: "created_time"
-  created_time: string
+	type: "created_time"
+	created_time: string
 }
 
 export interface CreatedByPropertyValue extends PropertyValueBase {
-  type: "created_by"
-  created_by: User
+	type: "created_by"
+	created_by: User
 }
 
 export interface LastEditedTimePropertyValue extends PropertyValueBase {
-  type: "last_edited_time"
-  last_edited_time: string
+	type: "last_edited_time"
+	last_edited_time: string
 }
 
 export interface LastEditedByPropertyValue extends PropertyValueBase {
-  type: "last_edited_by"
-  last_edited_by: User
+	type: "last_edited_by"
+	last_edited_by: User
 }
 
 /*
@@ -843,224 +845,255 @@ export interface LastEditedByPropertyValue extends PropertyValueBase {
  */
 export type RichText = RichTextText | RichTextMention | RichTextEquation
 export type RichTextInput =
-  | RichTextTextInput
-  | RichTextMention
-  | RichTextEquation
+	| RichTextTextInput
+	| RichTextMention
+	| RichTextEquation
 
 export interface RichTextBaseInput {
-  plain_text?: string
-  href?: string
-  annotations?: Annotations
-  type: string
+	plain_text?: string
+	href?: string
+	annotations?: Annotations
+	type: string
 }
 
 export interface RichTextTextInput extends RichTextBaseInput {
-  type: "text"
-  text: {
-    content: string
-    link?: { type: "url"; url: string }
-  }
+	type: "text"
+	text: {
+		content: string
+		link?: { type: "url"; url: string }
+	}
 }
 
 export type RichTextBase = RequiredBy<
-  RichTextBaseInput,
-  "plain_text" | "annotations"
+	RichTextBaseInput,
+	"plain_text" | "annotations"
 >
 export type RichTextText = RequiredBy<
-  RichTextTextInput,
-  "plain_text" | "annotations"
+	RichTextTextInput,
+	"plain_text" | "annotations"
 >
 export interface RichTextMention extends RichTextBase {
-  type: "mention"
-  mention: UserMention | PageMention | DatabaseMention | DateMention
+	type: "mention"
+	mention: UserMention | PageMention | DatabaseMention | DateMention
 }
 
 export interface UserMention {
-  type: "user"
-  user: User
+	type: "user"
+	user: User
 }
 
 export interface PageMention {
-  type: "page"
-  page: { id: string }
+	type: "page"
+	page: { id: string }
 }
 
 export interface DatabaseMention {
-  type: "database"
-  database: { id: string }
+	type: "database"
+	database: { id: string }
 }
 
 export interface DateMention {
-  type: "date"
-  date: DatePropertyValue
+	type: "date"
+	date: DatePropertyValue
 }
 
 export interface RichTextEquation extends RichTextBase {
-  type: "equation"
-  equation: {
-    expression: string
-  }
+	type: "equation"
+	equation: {
+		expression: string
+	}
 }
 
 export interface Annotations {
-  bold: boolean
-  italic: boolean
-  strikethrough: boolean
-  underline: boolean
-  code: boolean
-  color: Color | BackgroundColor
+	bold: boolean
+	italic: boolean
+	strikethrough: boolean
+	underline: boolean
+	code: boolean
+	color: Color | BackgroundColor
 }
 
 /*
  * Database property schema (input)
  */
 export type PropertySchema =
-  | TitlePropertySchema
-  | RichTextPropertySchema
-  | NumberPropertySchema
-  | SelectPropertySchema
-  | MultiSelectPropertySchema
-  | DatePropertySchema
-  | PeoplePropertySchema
-  | FilePropertySchema
-  | CheckboxPropertySchema
-  | URLPropertySchema
-  | EmailPropertySchema
-  | PhoneNumberPropertySchema
-  | CreatedTimePropertySchema
-  | CreatedByPropertySchema
-  | LastEditedTimePropertySchema
-  | LastEditedByPropertySchema
+	| TitlePropertySchema
+	| RichTextPropertySchema
+	| NumberPropertySchema
+	| SelectPropertySchema
+	| MultiSelectPropertySchema
+	| DatePropertySchema
+	| PeoplePropertySchema
+	| FilePropertySchema
+	| CheckboxPropertySchema
+	| URLPropertySchema
+	| EmailPropertySchema
+	| PhoneNumberPropertySchema
+	| CreatedTimePropertySchema
+	| CreatedByPropertySchema
+	| LastEditedTimePropertySchema
+	| LastEditedByPropertySchema
 
 export interface TitlePropertySchema {
-  title: Record<string, never>
+	title: Record<string, never>
 }
 
 export interface RichTextPropertySchema {
-  rich_text: Record<string, never>
+	rich_text: Record<string, never>
 }
 
 export interface NumberPropertySchema {
-  number: {
-    format?:
-      | "number"
-      | "number_with_commas"
-      | "percent"
-      | "dollar"
-      | "canadian_dollar"
-      | "euro"
-      | "pound"
-      | "yen"
-      | "ruble"
-      | "rupee"
-      | "won"
-      | "yuan"
-      | "real"
-      | "lira"
-      | "rupiah"
-      | "franc"
-      | "hong_kong_dollar"
-      | "new_zealand_dollar"
-      | "krona"
-      | "norwegian_krone"
-      | "mexican_peso"
-      | "rand"
-      | "new_taiwan_dollar"
-      | "danish_krone"
-      | "zloty"
-      | "baht"
-      | "forint"
-      | "koruna"
-      | "shekel"
-      | "chilean_peso"
-      | "philippine_peso"
-      | "dirham"
-      | "colombian_peso"
-      | "riyal"
-      | "ringgit"
-      | "leu"
-  }
+	number: {
+		format?:
+			| "number"
+			| "number_with_commas"
+			| "percent"
+			| "dollar"
+			| "canadian_dollar"
+			| "euro"
+			| "pound"
+			| "yen"
+			| "ruble"
+			| "rupee"
+			| "won"
+			| "yuan"
+			| "real"
+			| "lira"
+			| "rupiah"
+			| "franc"
+			| "hong_kong_dollar"
+			| "new_zealand_dollar"
+			| "krona"
+			| "norwegian_krone"
+			| "mexican_peso"
+			| "rand"
+			| "new_taiwan_dollar"
+			| "danish_krone"
+			| "zloty"
+			| "baht"
+			| "forint"
+			| "koruna"
+			| "shekel"
+			| "chilean_peso"
+			| "philippine_peso"
+			| "dirham"
+			| "colombian_peso"
+			| "riyal"
+			| "ringgit"
+			| "leu"
+	}
 }
 
 interface SelectOptionSchema {
-  name: string
-  color?: Color
+	name: string
+	color?: Color
 }
 
 type MultiSelectOptionSchema = SelectOptionSchema
 
 export interface SelectPropertySchema {
-  select: { options?: SelectOptionSchema[] }
+	select: { options?: SelectOptionSchema[] }
 }
 
 export interface MultiSelectPropertySchema {
-  multi_select: { options?: MultiSelectOptionSchema[] }
+	multi_select: { options?: MultiSelectOptionSchema[] }
 }
 
 export interface DatePropertySchema {
-  date: Record<string, never>
+	date: Record<string, never>
 }
 
 export interface PeoplePropertySchema {
-  people: Record<string, never>
+	people: Record<string, never>
 }
 
 export interface FilePropertySchema {
-  files: Record<string, never>
+	files: Record<string, never>
 }
 
 export interface CheckboxPropertySchema {
-  checkbox: Record<string, never>
+	checkbox: Record<string, never>
 }
 
 export interface URLPropertySchema {
-  url: Record<string, never>
+	url: Record<string, never>
 }
 
 export interface EmailPropertySchema {
-  email: Record<string, never>
+	email: Record<string, never>
 }
 
 export interface PhoneNumberPropertySchema {
-  phone_number: Record<string, never>
+	phone_number: Record<string, never>
 }
 
 export interface CreatedTimePropertySchema {
-  created_time: Record<string, never>
+	created_time: Record<string, never>
 }
 
 export interface CreatedByPropertySchema {
-  created_by: Record<string, never>
+	created_by: Record<string, never>
 }
 
 export interface LastEditedTimePropertySchema {
-  last_edited_time: Record<string, never>
+	last_edited_time: Record<string, never>
 }
 
 export interface LastEditedByPropertySchema {
-  last_edited_by: Record<string, never>
+	last_edited_by: Record<string, never>
 }
 
 /*
  * Update database property schema (input)
  */
 export interface RenamePropertySchema {
-  name: string
+	name: string
 }
 
 type UpdateSelectOptionSchema = SelectOptionSchema | SelectOption
 
 export interface UpdateSelectPropertySchema {
-  select: { options?: UpdateSelectOptionSchema[] }
+	select: { options?: UpdateSelectOptionSchema[] }
 }
 
 export interface UpdateMultiSelectPropertySchema {
-  multi_select: { options?: UpdateSelectOptionSchema[] }
+	multi_select: { options?: UpdateSelectOptionSchema[] }
 }
 
 export type UpdatePropertySchema =
-  | PropertySchema
-  | UpdateSelectPropertySchema
-  | UpdateMultiSelectPropertySchema
-  | RenamePropertySchema
-  | null
+	| PropertySchema
+	| UpdateSelectPropertySchema
+	| UpdateMultiSelectPropertySchema
+	| RenamePropertySchema
+	| null
+
+/*
+ * Files
+ */
+
+export interface File extends BlockBase {
+	type: "file"
+	file: {
+		url: RichText[]
+		expires_at?: Block[]
+	}
+}
+
+export interface FileInput {
+	type: "file"
+	file: {
+		url: string
+	}
+}
+
+export interface ExternalFileInput {
+	type: "external"
+	external: {
+		url: string
+	}
+}
+
+export interface EmojiInput {
+	type: "emoji"
+	emoji: string
+}
