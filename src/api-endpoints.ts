@@ -285,6 +285,8 @@ interface DatabasesCreateBodyParameters {
   parent: ParentPageInput
   properties: InputPropertySchemaMap
   title?: RichTextInput[]
+  icon?: PageIconInput
+  cover?: PageCoverInput
 }
 
 export interface DatabasesCreateParameters
@@ -297,7 +299,7 @@ export const databasesCreate = {
   method: "post",
   pathParams: [],
   queryParams: [],
-  bodyParams: ["parent", "properties", "title"],
+  bodyParams: ["parent", "properties", "title", "icon", "cover"],
   path: () => `databases`,
 } as const
 
