@@ -131,9 +131,8 @@ export interface ChildPageBlock extends BlockBase {
 }
 
 export interface EmbedBlock extends BlockBase {
-  // TODO(ryan): Update to `embed`
-  type: "media"
-  media: {
+  type: "embed"
+  embed: {
     url: string
     caption?: RichText[]
   }
