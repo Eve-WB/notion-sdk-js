@@ -565,8 +565,8 @@ export interface Page {
 	created_time: string
 	last_edited_time: string
 	archived: boolean
-	icon: FileInput | ExternalFileInput | EmojiInput | null
-	cover: FileInput | ExternalFileInput | null
+	icon: File | ExternalFile | Emoji | null
+	cover: File | ExternalFile | null
 	properties: PropertyValueMap
 	url: string
 }
@@ -1071,29 +1071,31 @@ export type UpdatePropertySchema =
  * Files
  */
 
-export interface File extends BlockBase {
-	type: "file"
-	file: {
-		url: RichText[]
-		expires_at?: Block[]
-	}
-}
-
-export interface FileInput {
+interface FileBase {
 	type: "file"
 	file: {
 		url: string
 	}
 }
 
-export interface ExternalFileInput {
+export type File = FileBase & { file: { expires_at: string } }
+
+export type FileInput = Omit<FileBase, "type"> & { type?: "file" }
+
+export interface ExternalFile {
 	type: "external"
 	external: {
 		url: string
 	}
 }
 
-export interface EmojiInput {
+export type ExternalFileInput = Omit<ExternalFile, "type"> & {
+	type?: "external"
+}
+
+export interface Emoji {
 	type: "emoji"
 	emoji: string
 }
+
+export type EmojiInput = Omit<Emoji, "type"> & { type?: "emoji" }
