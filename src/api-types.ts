@@ -49,6 +49,12 @@ export type Block =
 	| ToDoBlock
 	| ToggleBlock
 	| ChildPageBlock
+	| EmbedBlock
+	| ImageBlock
+	| VideoBlock
+	| FileBlock
+	| PDFBlock
+	| AudioBlock
 	| UnsupportedBlock
 
 export interface BlockBase {
@@ -122,6 +128,48 @@ export interface ToggleBlock extends BlockBase {
 export interface ChildPageBlock extends BlockBase {
 	type: "child_page"
 	child_page: { title: string }
+}
+
+export interface EmbedBlock extends BlockBase {
+	// TODO(ryan): Update to `embed`
+	type: "media"
+	media: {
+		url: string
+		caption?: RichText[]
+	}
+}
+
+export interface ExternalFileWithCaption extends ExternalFile {
+	caption?: RichText[]
+}
+
+export interface FileWithCaption extends File {
+	caption?: RichText[]
+}
+
+export interface ImageBlock extends BlockBase {
+	type: "image"
+	image: ExternalFileWithCaption | FileWithCaption
+}
+
+export interface VideoBlock extends BlockBase {
+	type: "video"
+	video: ExternalFileWithCaption | FileWithCaption
+}
+
+export interface FileBlock extends BlockBase {
+	type: "file"
+	file: ExternalFileWithCaption | FileWithCaption
+}
+
+export interface PDFBlock extends BlockBase {
+	type: "pdf"
+	pdf: ExternalFileWithCaption | FileWithCaption
+}
+
+export interface AudioBlock extends BlockBase {
+	type: "audio"
+	audio: ExternalFileWithCaption | FileWithCaption
 }
 
 export interface UnsupportedBlock extends BlockBase {
@@ -1078,7 +1126,7 @@ interface FileBase {
 	}
 }
 
-export type File = FileBase & { file: { expires_at: string } }
+export type File = FileBase & { file: { expiry_time: string } }
 
 export type FileInput = Omit<FileBase, "type"> & { type?: "file" }
 
