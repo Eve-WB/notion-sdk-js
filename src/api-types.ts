@@ -1148,7 +1148,7 @@ interface FileBase {
 
 export type File = FileBase & { file: { expiry_time: string } }
 
-export type FileInput = Omit<FileBase, "type"> & { type?: "file" }
+export type FileInput = PartialBy<FileBase, "type">
 
 export interface ExternalFile {
   type: "external"
