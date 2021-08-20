@@ -6,7 +6,12 @@
  */
 
 import { PropertyValueMap } from "./api-endpoints"
-import { DistributiveExtend, DistributiveOmit, RequiredBy } from "./type-utils"
+import {
+  DistributiveExtend,
+  DistributiveOmit,
+  PartialBy,
+  RequiredBy,
+} from "./type-utils"
 
 /*
  * Pagination
@@ -848,7 +853,6 @@ type FileWithName = {
   name: string
 } & (File | ExternalFile)
 
-// When writing, we don't allow S3 hosted files
 type ExternalFileWithName = {
   name: string
 } & ExternalFile
@@ -858,6 +862,7 @@ export interface FilesPropertyValue extends PropertyValueBase {
   files: FileWithName[]
 }
 
+// When writing, we don't allow S3 hosted files
 export interface FilesPropertyInputValue extends PropertyValueBase {
   type: "files"
   files: ExternalFileWithName[]
@@ -1152,13 +1157,11 @@ export interface ExternalFile {
   }
 }
 
-export type ExternalFileInput = Omit<ExternalFile, "type"> & {
-  type?: "external"
-}
+export type ExternalFileInput = PartialBy<ExternalFile, "type">
 
 export interface Emoji {
   type: "emoji"
   emoji: string
 }
 
-export type EmojiInput = Omit<Emoji, "type"> & { type?: "emoji" }
+export type EmojiInput = PartialBy<Emoji, "type">
