@@ -233,17 +233,17 @@ export type InputPropertyValueMap = {
   [propertyName: string]: InputPropertyValue
 }
 
-type PageIcon = FileInput | ExternalFileInput | EmojiInput
+export type PageIcon = FileInput | ExternalFileInput | EmojiInput
 
-type PageIconInput =
+export type PageIconInput =
   | (DistributiveOmit<Exclude<PageIcon, FileInput>, "type"> & {
       type?: string
     })
   | null
 
-type PageCover = FileInput | ExternalFileInput
+export type PageCover = FileInput | ExternalFileInput
 
-type PageCoverInput =
+export type PageCoverInput =
   | (DistributiveOmit<Exclude<PageCover, FileInput>, "type"> & {
       type?: string
     })
