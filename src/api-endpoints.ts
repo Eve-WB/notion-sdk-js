@@ -253,8 +253,8 @@ interface PagesCreateBodyParameters {
   parent: ParentInput
   properties: InputPropertyValueMap
   children?: Block[]
-  icon: PageIconInput
-  cover: PageCoverInput
+  icon?: PageIconInput
+  cover?: PageCoverInput
 }
 
 export interface PagesCreateParameters
@@ -316,6 +316,8 @@ export type UpdatePropertySchemaMap = {
 interface DatabasesUpdateBodyParameters {
   properties?: UpdatePropertySchemaMap
   title?: RichTextInput[]
+  icon?: PageIconInput
+  cover?: PageCoverInput
 }
 
 export interface DatabasesUpdateParameters
@@ -328,7 +330,7 @@ export const databasesUpdate = {
   method: "patch",
   pathParams: ["database_id"],
   queryParams: [],
-  bodyParams: ["properties", "title"],
+  bodyParams: ["properties", "title", "icon", "cover"],
   path: (d: DatabasesUpdatePathParameters) => `databases/${d.database_id}`,
 } as const
 
@@ -370,8 +372,8 @@ interface PagesUpdateBodyArchiveParameter {
 }
 interface PagesUpdateBodyParameters {
   properties: InputPropertyValueMap
-  icon: ExternalFileInput | EmojiInput | null
-  cover: ExternalFileInput | null
+  icon?: PageIconInput
+  cover?: PageCoverInput
 }
 
 export interface PagesUpdateParameters
