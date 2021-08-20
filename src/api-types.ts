@@ -738,7 +738,7 @@ export type InputPropertyValueWithRequiredId =
   | FormulaPropertyValue
   | RollupPropertyValue
   | PeoplePropertyValue
-  | FilesPropertyValue
+  | FilesPropertyInputValue
   | CheckboxPropertyValue
   | URLPropertyValue
   | EmailPropertyValue
@@ -849,9 +849,19 @@ type FileWithName = {
   name: string
 } & (File | ExternalFile)
 
+// When writing, we don't allow S3 hosted files
+type ExternalFileWithName = {
+  name: string
+} & ExternalFile
+
 export interface FilesPropertyValue extends PropertyValueBase {
   type: "files"
   files: FileWithName[]
+}
+
+export interface FilesPropertyInputValue extends PropertyValueBase {
+  type: "files"
+  files: ExternalFileWithName[]
 }
 
 export interface CheckboxPropertyValue extends PropertyValueBase {
